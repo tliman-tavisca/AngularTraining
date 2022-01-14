@@ -1,1 +1,35 @@
-{}
+{
+  "passengers": [
+    {
+      "id": 1,
+      "fullname": "Todd Motto",
+      "checkedin": true,
+      "checkedInDate": 14907400000,
+      "children": null
+    },
+    {
+      "id": 2,
+      "fullname": "Bob",
+      "checkedin": false,
+      "children": [
+        {
+          "name": "child1",
+          "age": 5
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "fullname": "Test",
+      "checkedin": false,
+      "children": null
+    },
+    {
+      "id": 5,
+      "fullname": "Neil",
+      "checkedin": true,
+      "checkedInDate": 14907400000,
+      "children": null
+    }
+  ]
+}

@@ -6,7 +6,7 @@ import { PassengerForComponent } from "../../models/passenger.interface";
   template: `
     <div>
       Total checked in Passengers : {{ GetCheckInPassengers() }} /
-      {{ items.length }}
+      {{ items?.length }}
     </div>
   `,
 })
