@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { PassengerForComponent } from "../../models/passenger.interface";
 
 import { PassengerDashboardService } from "../../passenger-dashboard.service";
@@ -16,6 +17,7 @@ import { PassengerDashboardService } from "../../passenger-dashboard.service";
         [detail]="passenger"
         (edit)="handleEdit($event)"
         (remove)="handleRemove($event)"
+        (view)="handleView($event)"
       ></passenger-detail>
     </div>
   `,
@@ -24,7 +26,10 @@ export class PassengerDashboardComponent implements OnInit {
   passengers: PassengerForComponent[];
 
   // Dependency resolved automatically using this
-  constructor(private passengerService: PassengerDashboardService) {}
+  constructor(
+    private router: Router,
+    private passengerService: PassengerDashboardService
+  ) {}
 
   ngOnInit(): void {
     /* Using Observable -------------------------------------------------------------
@@ -64,5 +69,9 @@ export class PassengerDashboardComponent implements OnInit {
           }
         ))
     );
+  }
+
+  handleView(event: PassengerForComponent) {
+    this.router.navigate(["/passengers", event.id]);
   }
 }
