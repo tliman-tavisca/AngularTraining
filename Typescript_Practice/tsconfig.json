@@ -1,0 +1,38 @@
+{
+ // "files": ["src/app.ts","src/adv.ts","src/app.ts"],
+ "include": ["src/**/*.ts"],
+ "exclude": ["src/**/*.spec.ts"],                         /* To skip any files like test files . Files takes precedence then exclude then include */
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./@types",
+    "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "module": "system",                                /* Specify what module code is generated. */
+    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */
+    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    "strict": true,                                      /* Enable all strict type-checking options. */
+   // "skipLibCheck": true ,                                /* Skip type checking all .d.ts files. */
+    "outDir": "dist",
+    "noImplicitThis": false,
+    "typeRoots": [
+      "src/@types",
+      "node_modules/@types"
+    ],
+    "noEmitOnError": false,         /* Skip compilation if there is error while compilation. */
+    "inlineSourceMap": true,
+    // "inlineSources": true,
+    // "mapRoot": "/mappings/"
+    "lib": ["dom", "es6", "ScriptHost","DOM.Iterable"],
+    "alwaysStrict": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+   // "traceResolution": true
+   //"diagnostics": true,
+   //"listFiles": true,
+   //"listEmittedFiles": true,
+   "pretty": true,
+   //"noUnusedLocals": true,
+   //"noUnusedParameters": true,
+   "noFallthroughCasesInSwitch": true,
+   "noImplicitReturns": true,
+  }
+}
