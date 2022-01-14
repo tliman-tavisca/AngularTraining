@@ -2,34 +2,35 @@
   "passengers": [
     {
       "id": 1,
-      "fullname": "Todd Motto",
+      "fullname": "Todd Updated",
       "checkedin": true,
-      "checkedInDate": 14907400000,
-      "children": null
+      "baggage": "nope",
+      "checkedInDate": 14907400000
     },
     {
       "id": 2,
       "fullname": "Bob",
       "checkedin": false,
-      "children": [
-        {
-          "name": "child1",
-          "age": 5
-        }
-      ]
+      "baggage": ""
+    },
+    {
+      "id": 3,
+      "fullname": "Sara",
+      "checkedin": false,
+      "baggage": ""
     },
     {
       "id": 4,
       "fullname": "Test",
       "checkedin": false,
-      "children": null
+      "baggage": ""
     },
     {
       "id": 5,
       "fullname": "Neil",
       "checkedin": true,
       "checkedInDate": 14907400000,
-      "children": null
+      "baggage": null
     }
   ]
 }

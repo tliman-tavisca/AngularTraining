@@ -3,10 +3,11 @@ export interface PassengerForComponent {
   fullname: string;
   checkedin: boolean;
   checkedInDate?: number;
-  children: Children[] | null;
+  // children: Children[] | null;
+  baggage: string;
 }
 
-export interface Children {
-  name: string;
-  age: number;
-}
+// export interface Children {
+//   name: string;
+//   age: number;
+// }
