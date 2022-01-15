@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormControl, FormGroup, FormArray } from "@angular/forms";
+import { FormControl, FormGroup, FormArray, FormBuilder } from "@angular/forms";
 import { Product } from "../models/product.interface";
 
 @Component({
@@ -36,6 +36,8 @@ export class StockInventoryComponent {
     { id: 4, price: 4800, name: "Iphone4" },
   ];
 
+  // IMplementation with FormGroup and FormControl
+  /*
   form = new FormGroup({
     store: new FormGroup({
       branch: new FormControl("Pune"),
@@ -43,6 +45,20 @@ export class StockInventoryComponent {
     }),
     selector: this.createStock({}),
     stock: new FormArray([
+      this.createStock({ product_id: 1, quantiry: 20 }),
+      this.createStock({ product_id: 3, quantiry: 40 }),
+    ]),
+  });
+*/
+
+  // Implementation with FormBuilder
+  form = this.fb.group({
+    store: this.fb.group({
+      branch: "Pune",
+      code: "01120",
+    }),
+    selector: this.createStock({}),
+    stock: this.fb.array([
       this.createStock({ product_id: 1, quantiry: 20 }),
       this.createStock({ product_id: 3, quantiry: 40 }),
     ]),
@@ -68,4 +84,6 @@ export class StockInventoryComponent {
     const control = this.form.get("stock") as FormArray;
     control.removeAt(index);
   }
+
+  constructor(private fb: FormBuilder) {}
 }
