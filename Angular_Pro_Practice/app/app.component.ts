@@ -10,20 +10,8 @@ import { FileSizePipe } from "./pipesize.pipe";
 @Component({
   selector: "app-root",
   template: `
-    <div>
-      With Pipe in html code
-      <div *ngFor="let file of files">
-        <p>{{ file.name }}</p>
-        <p>{{ file.size | filesize: "Bytes in MB" }}</p>
-      </div>
-    </div>
-
-    With Pipe as Provider in Compoent code
-    <div>
-      <div *ngFor="let file of mapped">
-        <p>{{ file.name }}</p>
-        <p>{{ file.size }}</p>
-      </div>
+    <div class="stock-inventory">
+      <stock-inventory></stock-inventory>
     </div>
   `,
   providers: [FileSizePipe],

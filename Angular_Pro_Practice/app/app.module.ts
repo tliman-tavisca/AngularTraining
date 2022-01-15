@@ -7,6 +7,8 @@ import { TooltipDirective } from "./tooltip/tooltip.directive";
 import { MyForDirective } from "./my-for/my-for.directive";
 import { FileSizePipe } from "./pipesize.pipe";
 
+import { StockInventoryModule } from "../app/stock-inventory/stock-inventory.module";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +17,7 @@ import { FileSizePipe } from "./pipesize.pipe";
     MyForDirective,
     FileSizePipe,
   ],
-  imports: [BrowserModule],
+  imports: [BrowserModule, StockInventoryModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
