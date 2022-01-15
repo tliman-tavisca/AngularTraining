@@ -11,12 +11,12 @@ import { Product } from "../../models/product.interface";
         <div *ngFor="let item of stocks; let i = index">
           <div class="stock-product__content" [formGroupName]="i">
             <div class="stock-product__name">
-              {{ getProduct(item.value.product_id).name }}
+              {{ getProduct(item.value.product_id)?.name }}
             </div>
 
             <div class="stock-product__price">
               {{
-                getProduct(item.value.product_id).price | currency: "USD":true
+                getProduct(item.value.product_id)?.price | currency: "USD":true
               }}
             </div>
 
