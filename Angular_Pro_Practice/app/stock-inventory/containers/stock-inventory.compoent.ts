@@ -11,6 +11,7 @@ import { StockInventoryService } from "../services/stock-inventory.service";
 import { Observable } from "rxjs";
 
 import "rxjs/add/observable/forkJoin";
+import { StockValidators } from "./stock-inventory.validators";
 
 @Component({
   selector: "stock-inventory",
@@ -53,7 +54,7 @@ export class StockInventoryComponent implements OnInit {
   // Implementation with FormBuilder
   form = this.fb.group({
     store: this.fb.group({
-      branch: ["", Validators.required],
+      branch: ["", [Validators.required, StockValidators.CheckBranch]],
       code: ["", Validators.required],
     }),
     selector: this.createStock({}),

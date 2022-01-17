@@ -8,9 +8,12 @@ import { FormGroup } from "@angular/forms";
     <div [formGroup]="parent">
       <div formGroupName="store">
         <input type="text" placeholder="Branch Id" formControlName="branch" />
-        <div *ngIf="required('branch')">Branch ID is rquired</div>
+        <div class="error" *ngIf="required('branch')">Branch ID is rquired</div>
+        <div class="error" *ngIf="inValid">
+          Invalid Branch id, 1 Letter 3 numbers
+        </div>
         <input type="text" placeholder="Manager Code" formControlName="code" />
-        <div *ngIf="required('code')">Branch Code is rquired</div>
+        <div class="error" *ngIf="required('code')">Branch Code is rquired</div>
       </div>
     </div>
   `,
@@ -18,6 +21,14 @@ import { FormGroup } from "@angular/forms";
 export class StockBranchComponent {
   @Input()
   parent: FormGroup;
+
+  get inValid() {
+    return (
+      this.parent.get("store.branch").hasError("invalidBranch") &&
+      this.parent.get("store.branch").dirty &&
+      !this.required("branch")
+    );
+  }
 
   required(name: string) {
     return (
