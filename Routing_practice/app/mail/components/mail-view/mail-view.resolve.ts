@@ -1,21 +1,13 @@
 import { Injectable } from "@angular/core";
-import {
-  ActivatedRouteSnapshot,
-  Resolve,
-  RouterStateSnapshot,
-} from "@angular/router";
-import { Mail } from "../../models/mail.interface";
+import { ActivatedRouteSnapshot, Resolve } from "@angular/router";
+
 import { MailService } from "../../mail.service";
-import { Observable } from "rxjs/Observable";
+import { Mail } from "../../models/mail.interface";
 
 @Injectable()
 export class MailViewResolve implements Resolve<Mail> {
   constructor(private mailService: MailService) {}
-
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<Mail> {
-    return this.mailService.getMesage(route.params.id);
+  resolve(route: ActivatedRouteSnapshot) {
+    return this.mailService.getMessage(route.params.id);
   }
 }

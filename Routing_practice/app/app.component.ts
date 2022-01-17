@@ -1,7 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-
-import "rxjs/add/operator/filter";
+import { Component } from "@angular/core";
 
 @Component({
   selector: "app-root",
@@ -15,6 +12,7 @@ import "rxjs/add/operator/filter";
         <nav>
           <a
             [routerLink]="[
+              '/mail',
               { outlets: { primary: 'folder/inbox', pane: null } }
             ]"
             routerLinkActive="active"
@@ -23,19 +21,20 @@ import "rxjs/add/operator/filter";
           </a>
           <a
             [routerLink]="[
+              '/mail',
               { outlets: { primary: 'folder/trash', pane: null } }
             ]"
             routerLinkActive="active"
           >
             Trash
           </a>
+          <a [routerLink]="['/dashboard']" routerLinkActive="active">
+            Dashboard
+          </a>
         </nav>
-        <mail-app></mail-app>
+        <router-outlet></router-outlet>
       </div>
     </div>
   `,
 })
-export class AppComponent implements OnInit {
-  constructor(private router: Router) {}
-  ngOnInit() {}
-}
+export class AppComponent {}

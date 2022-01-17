@@ -1,5 +1,4 @@
 import { Component, Input } from "@angular/core";
-import { Router } from "@angular/router";
 
 import { Mail } from "../../models/mail.interface";
 
@@ -7,25 +6,20 @@ import { Mail } from "../../models/mail.interface";
   selector: "mail-item",
   styleUrls: ["mail-item.component.scss"],
   template: `
-    <a class="mail-item" (click)="navigateToMessage()">
+    <a
+      class="mail-item"
+      [routerLink]="['/mail', { outlets: { pane: ['message', message.id] } }]"
+      routerLinkActive="active"
+    >
       <h3>
-        {{ message.from }}
+        {{ (message | async).from }}
         <span>{{ message.timestamp | date: "shortTime" }}</span>
       </h3>
-      <p>{{ message.summary }}</p>
+      <p>{{ (message | async).summary }}</p>
     </a>
   `,
 })
 export class MailItemComponent {
   @Input()
   message: Mail;
-
-  constructor(private router: Router) {}
-
-  navigateToMessage() {
-    this.router.navigate([
-      "",
-      { outlets: { pane: ["message", this.message.id] } },
-    ]);
-  }
 }

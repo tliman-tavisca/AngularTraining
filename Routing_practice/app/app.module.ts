@@ -7,7 +7,13 @@ import { MailModule } from "./mail/mail.module";
 
 import { AppComponent } from "./app.component";
 
-export const ROUTES: Routes = [{ path: "**", redirectTo: "folder/inbox" }];
+export const ROUTES: Routes = [
+  {
+    path: "dashboard",
+    loadChildren: "./app/dashboard/dashboard.module#DashboardModule",
+  },
+  { path: "**", redirectTo: "mail/folder/inbox" },
+];
 
 @NgModule({
   declarations: [AppComponent],
