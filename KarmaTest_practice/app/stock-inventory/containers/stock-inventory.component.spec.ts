@@ -3,12 +3,12 @@ import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting,
 } from "@angular/platform-browser-dynamic/testing";
-import { DebugElement } from "@angular/core";
+import { DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
 import { StockInventoryComponent } from "./stock-inventory.component";
-import { StockBranchComponent } from "../components/stock-branch/stock-branch.component";
-import { StockCounterComponent } from "../components/stock-counter/stock-counter.component";
-import { StockProductsComponent } from "../components/stock-products/stock-products.component";
-import { StockSelectorComponent } from "../components/stock-selector/stock-selector.component";
+// import { StockBranchComponent } from "../components/stock-branch/stock-branch.component";
+// import { StockCounterComponent } from "../components/stock-counter/stock-counter.component";
+// import { StockProductsComponent } from "../components/stock-products/stock-products.component";
+// import { StockSelectorComponent } from "../components/stock-selector/stock-selector.component";
 import { StockInventoryService } from "../services/stock-inventory.service";
 
 import { ReactiveFormsModule } from "@angular/forms";
@@ -47,14 +47,17 @@ describe("StockInventoryComponent", () => {
       imports: [ReactiveFormsModule],
       declarations: [
         StockInventoryComponent,
-        StockBranchComponent,
-        StockCounterComponent,
-        StockProductsComponent,
-        StockSelectorComponent,
+        // StockBranchComponent,
+        // StockCounterComponent,
+        // StockProductsComponent,
+        // StockSelectorComponent,
       ],
       providers: [
         { provide: StockInventoryService, useClass: MockStockInventoryService },
       ],
+
+      //Use when dont want to import child compenents dependecies in test cases
+      schemas: [NO_ERRORS_SCHEMA],
     });
 
     fixture = TestBed.createComponent(StockInventoryComponent);
