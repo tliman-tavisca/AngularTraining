@@ -40,5 +40,22 @@ export class StockSelectorComponent {
 
   onAdd() {
     this.itemAdded.emit(this.parent.get("selector").value);
+
+    //update whole object
+    // this.parent.get("selector").reset({
+    //   product_id: "",
+    //   quantity: 10,
+    // });
+
+    // Update only few controls
+    // this.parent.get("selector").patchValue({
+    //   quantity: 20,
+    // });
+
+    // Update only few controls
+    this.parent.get("selector").setValue({
+      product_id: "",
+      quantity: 20,
+    });
   }
 }
