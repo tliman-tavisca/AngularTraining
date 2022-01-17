@@ -10,9 +10,19 @@ interface Pizza {
   price: number;
 }
 
+export function PizzaFactory(http) {
+  return new FoodService(http, "/api/pizzas");
+}
+
 @Component({
   selector: "pizza-viewer",
-  providers: [FoodService],
+  providers: [
+    {
+      provide: FoodService,
+      useFactory: PizzaFactory,
+      deps: [Http],
+    },
+  ],
   template: `
     <div>
       <div *ngFor="let item of items$ | async">

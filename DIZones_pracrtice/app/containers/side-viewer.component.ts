@@ -10,9 +10,19 @@ interface Side {
   price: number;
 }
 
+export function SideFactory(http) {
+  return new FoodService(http, "/api/sides");
+}
+
 @Component({
   selector: "side-viewer",
-  providers: [FoodService],
+  providers: [
+    {
+      provide: FoodService,
+      useFactory: SideFactory,
+      deps: [Http],
+    },
+  ],
   template: `
     <div>
       <div *ngFor="let item of items$ | async">
