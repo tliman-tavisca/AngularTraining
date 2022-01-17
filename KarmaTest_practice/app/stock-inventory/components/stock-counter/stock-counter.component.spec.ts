@@ -1,4 +1,6 @@
+import { DebugElement } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { By } from "@angular/platform-browser";
 import {
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting,
@@ -69,5 +71,44 @@ describe("StockCounterComponent", () => {
     component.increment();
     // to check emit called with using toHaveBeenCalledWith
     expect(component.changed.emit).toHaveBeenCalledWith(100);
+  });
+});
+
+describe("StockCounterComponent With Component Templates", () => {
+  let component: StockCounterComponent;
+  let fixture: ComponentFixture<StockCounterComponent>;
+  let el: DebugElement;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [StockCounterComponent],
+    });
+
+    fixture = TestBed.createComponent(StockCounterComponent);
+    component = fixture.componentInstance;
+    el = fixture.debugElement;
+
+    component.value = 0;
+  });
+
+  it("should increment when + button is click", () => {
+    // Test with selecting dom
+    el.query(By.css("button:first-child")).triggerEventHandler("click", null);
+    fixture.detectChanges();
+    expect(component.value).toBe(1);
+    // Check on UI i.e. We can test DOM
+    expect(el.query(By.css("p")).nativeElement.textContent).toBe("1");
+  });
+
+  it("should increment value when up arrow pressed", () => {
+    const event = new Event("KeyboardEvent") as any;
+    event.code = "ArrowUp";
+    // Test keyboard event pressed and component changed
+    el.query(By.css(".stock-counter > div > div")).triggerEventHandler(
+      "keydown",
+      event
+    );
+    fixture.detectChanges();
+    expect(component.value).toBe(1);
   });
 });
