@@ -53,4 +53,21 @@ describe("StockCounterComponent", () => {
     }
     expect(component.value).toBe(100);
   });
+
+  it("should not increment over the maximum value", () => {
+    component.step = 20;
+    component.max = 20;
+    component.increment();
+    component.increment();
+    expect(component.value).toBe(20);
+  });
+
+  it("should call the output on a value change", () => {
+    // To test output i.e. Emitter
+    spyOn(component.changed, "emit").and.callThrough();
+    component.step = 100;
+    component.increment();
+    // to check emit called with using toHaveBeenCalledWith
+    expect(component.changed.emit).toHaveBeenCalledWith(100);
+  });
 });
