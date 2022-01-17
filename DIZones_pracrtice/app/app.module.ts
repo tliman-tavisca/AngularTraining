@@ -8,6 +8,7 @@ import { SideViewerComponent } from "./containers/side-viewer.component";
 
 import { AppComponent } from "./app.component";
 import { API_TOKEN } from "./token";
+import { FoodStoreModule } from "./food-store/food-store.module";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,14 @@ import { API_TOKEN } from "./token";
     DrinkViewerComponent,
     SideViewerComponent,
   ],
-  imports: [BrowserModule, HttpModule],
+  imports: [
+    BrowserModule,
+    HttpModule,
+    FoodStoreModule.forRoot({
+      storeId: 10292,
+      storeToken: "eca938c99a0e9ff91029dc",
+    }),
+  ],
   bootstrap: [AppComponent],
   providers: [{ provide: API_TOKEN, useValue: "/api/pizzas" }],
 })
