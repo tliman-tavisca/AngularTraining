@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { RouterModule, Routes } from "@angular/router";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { HttpModule } from "@angular/http";
 
 import { MailModule } from "./mail/mail.module";
@@ -10,7 +10,7 @@ import { AppComponent } from "./app.component";
 export const ROUTES: Routes = [
   {
     path: "dashboard",
-    loadChildren: "./app/dashboard/dashboard.module#DashboardModule",
+    loadChildren: "./dashboard/dashboard.module#DashboardModule",
   },
   { path: "**", redirectTo: "mail/folder/inbox" },
 ];
@@ -21,7 +21,7 @@ export const ROUTES: Routes = [
     BrowserModule,
     HttpModule,
     MailModule,
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
   ],
   bootstrap: [AppComponent],
 })
