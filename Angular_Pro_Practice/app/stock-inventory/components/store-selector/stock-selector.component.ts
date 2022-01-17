@@ -31,7 +31,17 @@ import { Product } from "../../models/product.interface";
           formControlName="quantity"
         ></stock-counter>
 
-        <button type="button" (click)="onAdd()">Add Stock</button>
+        <button
+          type="button"
+          (click)="onAdd()"
+          [disabled]="stockExists || notSelected"
+        >
+          Add Stock
+        </button>
+
+        <div class="stock-selector__error" *ngIf="stockExists">
+          Item already exists in the stock
+        </div>
       </div>
     </div>
   `,
@@ -45,6 +55,17 @@ export class StockSelectorComponent {
 
   @Output()
   itemAdded = new EventEmitter<any>();
+
+  get stockExists() {
+    return (
+      this.parent.hasError("stockExists") &&
+      this.parent.get("selector.product_id").dirty
+    );
+  }
+
+  get notSelected() {
+    return !this.parent.get("selector.product_id").value;
+  }
 
   onAdd() {
     this.itemAdded.emit(this.parent.get("selector").value);
