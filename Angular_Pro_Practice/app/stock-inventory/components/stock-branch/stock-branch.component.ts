@@ -8,7 +8,9 @@ import { FormGroup } from "@angular/forms";
     <div [formGroup]="parent">
       <div formGroupName="store">
         <input type="text" placeholder="Branch Id" formControlName="branch" />
+        <div *ngIf="required('branch')">Branch ID is rquired</div>
         <input type="text" placeholder="Manager Code" formControlName="code" />
+        <div *ngIf="required('code')">Branch Code is rquired</div>
       </div>
     </div>
   `,
@@ -16,4 +18,11 @@ import { FormGroup } from "@angular/forms";
 export class StockBranchComponent {
   @Input()
   parent: FormGroup;
+
+  required(name: string) {
+    return (
+      this.parent.get(`store.${name}`).hasError("required") &&
+      this.parent.get(`store.${name}`).touched
+    );
+  }
 }
