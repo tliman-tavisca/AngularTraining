@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import {
-  ActivatedRouteSnapshot,
   Resolve,
+  ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from "@angular/router";
-import { Observable } from "rxjs";
+
 import { MailService } from "../../mail.service";
 import { Mail } from "../../models/mail.interface";
 
