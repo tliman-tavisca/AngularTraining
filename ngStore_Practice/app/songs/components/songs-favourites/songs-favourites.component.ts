@@ -1,21 +1,20 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs/observable";
 
-import { Store } from "../../../store";
-import { SongsService } from "../../services/songs.service";
-
+import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/filter";
 import "rxjs/add/operator/map";
+
+import { SongsService } from "../../services/songs.service";
+
+import { Store } from "../../../store";
 
 @Component({
   selector: "songs-favourites",
   template: `
     <div class="songs">
-      Favourites
-      <div *ngFor="let item of favourites$ | async">
-        {{ item.artist }} :
-        {{ item.track }}
-      </div>
+      <songs-list [list]="favourites$ | async" (toggle)="onToggle($event)">
+        Favourites
+      </songs-list>
     </div>
   `,
 })
@@ -29,5 +28,9 @@ export class SongsFavouritesComponent implements OnInit {
       .select("playlist")
       .filter(Boolean)
       .map((playlist) => playlist.filter((track) => track.favourite));
+  }
+
+  onToggle(event) {
+    this.songsService.toggle(event);
   }
 }
