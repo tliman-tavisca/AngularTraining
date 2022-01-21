@@ -26,7 +26,7 @@ import { Pizza } from "../../models/pizza.model";
 export class ProductsComponent implements OnInit {
   pizzas$: Observable<Pizza[]>;
 
-  constructor(private store: Store<fromStore.ProductState>) {}
+  constructor(private store: Store<fromStore.ProductsState>) {}
 
   ngOnInit() {
     this.pizzas$ = this.store.select(fromStore.getAllPizzas);
