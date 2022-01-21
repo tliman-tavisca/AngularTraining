@@ -28,6 +28,7 @@ export const ROUTES: Routes = [
   { path: "", pathMatch: "full", redirectTo: "products" },
   {
     path: "products",
+    //component: AppComponent,
     loadChildren: "../products/products.module#ProductsModule",
   },
 ];
