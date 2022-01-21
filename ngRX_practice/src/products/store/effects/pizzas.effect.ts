@@ -7,6 +7,8 @@ import { map, switchMap, catchError } from "rxjs/operators";
 import * as pizzaActions from "../actions/pizzas.action";
 import * as fromServices from "../../services";
 
+import * as fromRoot from "../../../app/store";
+
 @Injectable()
 export class PizzasEffects {
   constructor(
@@ -62,4 +64,30 @@ export class PizzasEffects {
       );
     })
   );
+
+  @Effect()
+  createPizzaSuccess$ = this.actions$
+    .ofType(pizzaActions.CREATE_PIZZA_SUCCESS)
+    .pipe(
+      map((action: pizzaActions.CreatePizzaSuccess) => action.payload),
+      map((pizza) => {
+        return new fromRoot.Go({
+          path: ["/products", pizza.id],
+        });
+      })
+    );
+
+  @Effect()
+  handlePizzaSuccess$ = this.actions$
+    .ofType(
+      pizzaActions.UPDATE_PIZZA_SUCCESS,
+      pizzaActions.REMOVE_PIZZA_SUCCESS
+    )
+    .pipe(
+      map((pizza) => {
+        return new fromRoot.Go({
+          path: ["/products"],
+        });
+      })
+    );
 }
